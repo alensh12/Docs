@@ -104,7 +104,7 @@ The app offers three flexible payment methods, allowing users to select their pr
 
 ### Available Payment Methods
 - Wallet Payment
-- E-Payment
+- Payment Gatewys
 - In app purchase
 
 #
