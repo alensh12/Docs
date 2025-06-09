@@ -1,5 +1,4 @@
 
-
 # NETTV  In-app purchase implementation
 
   
@@ -99,14 +98,42 @@ This method initiates a refund request for a specified transactionId, enabling d
 *As of StoreKit2 implementation,In-App Purchase Payment is only available on iOS devices running iOS 15.0 or later.*
 ##
 
-### Payment Methods
+## Payment Methods
 
 The app offers three flexible payment methods, allowing users to select their preferred option. These methods can be customized by enabling or disabling them through the configuration "[Dynamic Content](https://iptv-admin.geniustv.dev.geniussystems.com.np/dynamic-content/edit/230)."
 
-#### Available Payment Methods
+### Available Payment Methods
 - Wallet Payment
 - E-Payment
 - In app purchase
+
 #
+
+### Packages
+For implementation, we have use following package to support in app purchase in iOS.
+
+Dependencies
+- [in_app_purchase^3.2.2](https://pub.dev/packages/in_app_purchase/versions/3.2.2)
+
+Dependency Overrides
+- [in_app_purchase_storekit^0.4.0](https://pub.dev/packages/in_app_purchase_storekit/versions/0.4.0) 
+
+#
+
+
+### iOS Setups:
+We need to complete different setups before implementing in app purchase which can be found in documentation below:
+
+[In-App Purchase| Apple Developer](https://developer.apple.com/in-app-purchase/)
+
+1. [Sign the Paid Applications Agreement and set up your banking and tax information in App Store Connect.](https://developer.apple.com/help/app-store-connect/provide-tax-information/tax-forms-overview)
+2. [Generate keys for in-app purchases.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases)
+3. [Generate a shared secret to verify receipts.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-a-shared-secret-to-verify-receipts)
+To increase the security between our server and Apple’s servers when validating a subscription or in-app purchase, include a shared secret with your request to verify receipts.
+
+4. [Create a subscription in the app store connect.](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-non-renewing-subscriptions/)
+5. [Enable in-app purchase in Xcode.](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app)
+
+	
 
 
