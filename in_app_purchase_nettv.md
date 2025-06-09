@@ -169,7 +169,7 @@ PAYMENT METHODS -
 
 
 PAYMENT VERIFY -
->  URL : ```BASEURL + resellers/$resellerId/subscribers/$subscriberId/serial/$serial/subscriptions/apple/verify```
+> URL : ```BASEURL + resellers/$resellerId/subscribers/$subscriberId/serial/$serial/subscriptions/apple/verify```
 
 > METHOD: ```POST```
 
@@ -182,4 +182,4 @@ PAYMENT VERIFY -
 	"transaction_type":$transactionType
 }
 ```
-
+#
