@@ -54,8 +54,8 @@ sequenceDiagram
         AppleSystem->>User: Shows error message
     end
 ```
-
-### Restore purchase:
+##
+#### Restore purchase:
 1. **User Restore purchase**: User intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
 2. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
@@ -79,3 +79,4 @@ sequenceDiagram
         App->>User: Displays error
     end
 ```
+##
