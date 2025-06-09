@@ -95,7 +95,7 @@ IAPMethodCall().requestRefund($transactionId)
 This method initiates a refund request for a specified transactionId, enabling developers to test refund workflows.
 ##
 ### Important Note
-*As of StoreKit2 implementation,In-App Purchase Payment is only available on iOS devices running iOS 15.0 or later.*
+*As of StoreKit2 implementation, In-App Purchase Payment is only available on iOS devices running iOS 15.0 or later.*
 ##
 
 ## Payment Methods
@@ -155,7 +155,7 @@ Apple provides a testing environment, called sandbox, which allows you to test i
 [https://help.apple.com/app-store-connect/\#/dev7e89e149d](https://help.apple.com/app-store-connect/#/dev7e89e149d)
 #
 
-*API's Used*
+###API's Used
  
 BASEURL -
 
