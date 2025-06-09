@@ -129,8 +129,7 @@ We need to complete different setups before implementing in app purchase which c
 1. [Sign the Paid Applications Agreement and set up your banking and tax information in App Store Connect.](https://developer.apple.com/help/app-store-connect/provide-tax-information/tax-forms-overview)
 2. [Generate keys for in-app purchases.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases)
 3. [Generate a shared secret to verify receipts.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-a-shared-secret-to-verify-receipts)
-To increase the security between our server and Apple’s servers when validating a subscription or in-app purchase, include a shared secret with your request to verify receipts.
-
+   To increase the security between our server and Apple’s servers when validating a subscription or in-app purchase, include a shared secret with your request to verify transaction.
 4. [Create a subscription in the app store connect.](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-non-renewing-subscriptions/)
 5. [Enable in-app purchase in Xcode.](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app)
 
