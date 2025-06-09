@@ -1,4 +1,5 @@
 
+
 # NETTV  In-app purchase implementation
 
   
@@ -12,7 +13,7 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 ##
 
   
-### Basic flow :
+#### Basic flow :
 1. **User Starts the Purchase**: User makes subscription for product subscriptions and taps the “Buy” button to make an in-app purchase.
     
 2.  **Apple Displays Purchase Dialog**: Apple’s system steps in and shows a secure dialog box, asking the user to confirm the subscription purchase. This usually includes signing in with their Apple ID and approving the payment.
@@ -55,7 +56,7 @@ sequenceDiagram
     end
 ```
 ##
-### Restore purchase:
+#### Restore purchase:
 1. **User Restore purchase**: User intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
 2. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
@@ -93,3 +94,19 @@ IAPMethodCall().requestRefund($transactionId)
 
 
 This method initiates a refund request for a specified transactionId, enabling developers to test refund workflows.
+##
+### Important Note
+*As of StoreKit2 implementation,In-App Purchase Payment is only available on iOS devices running iOS 15.0 or later.*
+##
+
+### Payment Methods
+
+The app offers three flexible payment methods, allowing users to select their preferred option. These methods can be customized by enabling or disabling them through the configuration "[Dynamic Content](https://iptv-admin.geniustv.dev.geniussystems.com.np/dynamic-content/edit/230)."
+
+#### Available Payment Methods
+- Wallet Payment
+- E-Payment
+- In app purchase
+#
+
+
