@@ -13,7 +13,19 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 
 ### Table of Content
 1. [IOS Setups]()
-2. []
+2. [Flutter Packages for In-App Purchases on iOS]()
+3. [Basic Flow]()
+4. [Restore Purchase]()
+5. [Refund Purchase Process]()
+6. [Payment Methods]()
+7. [App Store Server Notifications]()
+8. [API's Used]()
+9. [Locally Saved Data for In-App Purchases]()
+10. [Setting Price of In-app Subscription]()
+11. [Apple's Small Business Program]()
+
+
+#
 
 ### IOS Setups
 We need to complete different setups before implementing in app purchase which can be found in documentation below:
@@ -140,11 +152,14 @@ IAPMethodCall().requestRefund($transactionId)
 
 
 This method initiates a refund request for a specified transactionId, enabling developers to test refund workflows.
-## Payment Methods
+
+#
+
+### Payment Methods
 
 The app offers three flexible payment methods, allowing users to select their preferred option. These methods can be customized by enabling or disabling them through the configuration [Dynamic Content Config](https://iptv-admin.geniustv.dev.geniussystems.com.np/dynamic-content/edit/230)
 
-### Available Payment Methods
+#### Available Payment Methods
 - Wallet Payment
 - Payment Gatewys
 - In app purchase
