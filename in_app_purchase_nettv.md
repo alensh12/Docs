@@ -11,6 +11,42 @@ There are several types of in-app purchases (IAPs) that mobile app developers ca
 The specific types of IAPs that are appropriate for your app will depend on the app's content and business model. For NETTV, we have implemented a non-renewing type for in-app product subscription.
 ##
 
+### IOS Setups
+We need to complete different setups before implementing in app purchase which can be found in documentation below:
+
+[In-App Purchase| Apple Developer Documentation](https://developer.apple.com/in-app-purchase/)
+
+1. [Sign the Paid Applications Agreement and set up your banking and tax information in App Store Connect.](https://developer.apple.com/help/app-store-connect/provide-tax-information/tax-forms-overview)
+2. [Generate keys for in-app purchases.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases)
+3. [Generate a shared secret to verify receipts.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-a-shared-secret-to-verify-receipts)
+To increase the security between our server and Apple’s servers when validating a subscription or in-app purchase, include a shared secret with your request to verify receipts.
+
+4. [Create a subscription in the app store connect.](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-non-renewing-subscriptions/)
+5. [Enable in-app purchase in Xcode.](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app)
+#
+
+
+### Flutter Packages for In-App Purchases on iOS
+To support in-app purchases on iOS, the following Flutter packages are used:
+
+##### Dependencies
+- [in_app_purchase^3.2.2](https://pub.dev/packages/in_app_purchase/versions/3.2.2)
+> Provides the core functionality for handling in-app purchases across platforms.
+##### Dependency Overrides
+- [in_app_purchase_storekit^0.4.0](https://pub.dev/packages/in_app_purchase_storekit/versions/0.4.0) 
+> Overrides the default in_app_purchase_storekit version used by in_app_purchase: ^3.2.2. This ensures the latest StoreKit implementation is utilized for iOS-specific in-app purchase features.
+
+```Note: The override to in_app_purchase_storekit: ^0.4.0 is necessary because in_app_purchase: ^3.2.2 does not include the most recent version of in_app_purchase_storekit, which defaults to using StoreKit for iOS.```
+
+#
+### Important Note
+> As of StoreKit2 implementation, In-App Purchase Payment is only available on iOS devices running iOS 15.0 or later.
+> Incase of iOS devices below 15.0 , App shows a note message below the payment method.
+>
+> ```** In-App purchase is only available from iOS 15.0```
+
+##
+
   
 #### Basic flow :
 1. **User Starts the Purchase**: User makes subscription for product subscriptions and taps the “Buy” button to make an in-app purchase.
@@ -96,46 +132,15 @@ IAPMethodCall().requestRefund($transactionId)
 
 
 This method initiates a refund request for a specified transactionId, enabling developers to test refund workflows.
-##
-### Important Note
-*As of StoreKit2 implementation, In-App Purchase Payment is only available on iOS devices running iOS 15.0 or later.*
-##
-
 ## Payment Methods
 
-The app offers three flexible payment methods, allowing users to select their preferred option. These methods can be customized by enabling or disabling them through the configuration "[Dynamic Content](https://iptv-admin.geniustv.dev.geniussystems.com.np/dynamic-content/edit/230)."
+The app offers three flexible payment methods, allowing users to select their preferred option. These methods can be customized by enabling or disabling them through the configuration [Dynamic Content Config](https://iptv-admin.geniustv.dev.geniussystems.com.np/dynamic-content/edit/230)
 
 ### Available Payment Methods
 - Wallet Payment
 - Payment Gatewys
 - In app purchase
 
-#
-
-### Packages
-For implementation, we have use following package to support in app purchase in iOS.
-
-Dependencies
-- [in_app_purchase^3.2.2](https://pub.dev/packages/in_app_purchase/versions/3.2.2)
-
-Dependency Overrides
-- [in_app_purchase_storekit^0.4.0](https://pub.dev/packages/in_app_purchase_storekit/versions/0.4.0) 
-
-#
-
-
-### IOS Setups
-We need to complete different setups before implementing in app purchase which can be found in documentation below:
-
-[In-App Purchase| Apple Developer Documentation](https://developer.apple.com/in-app-purchase/)
-
-1. [Sign the Paid Applications Agreement and set up your banking and tax information in App Store Connect.](https://developer.apple.com/help/app-store-connect/provide-tax-information/tax-forms-overview)
-2. [Generate keys for in-app purchases.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases)
-3. [Generate a shared secret to verify receipts.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-a-shared-secret-to-verify-receipts)
-To increase the security between our server and Apple’s servers when validating a subscription or in-app purchase, include a shared secret with your request to verify receipts.
-
-4. [Create a subscription in the app store connect.](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-non-renewing-subscriptions/)
-5. [Enable in-app purchase in Xcode.](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app)
 #
 	
 ### App Store Server Notifications
