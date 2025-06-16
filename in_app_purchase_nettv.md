@@ -11,6 +11,10 @@ There are several types of in-app purchases (IAPs) that mobile app developers ca
 The specific types of IAPs that are appropriate for your app will depend on the app's content and business model. For NETTV, we have implemented a non-renewing type for in-app product subscription.
 ##
 
+### Table of Content
+1. [IOS Setups]()
+2. []
+
 ### IOS Setups
 We need to complete different setups before implementing in app purchase which can be found in documentation below:
 
@@ -48,7 +52,7 @@ To support in-app purchases on iOS, the following Flutter packages are used:
 ##
 
   
-#### Basic flow :
+### Basic Flow
 1. **User Starts the Purchase**: User makes subscription for product subscriptions and taps the “Buy” button to make an in-app purchase.
     
 2.  **Apple Displays Purchase Dialog**: Apple’s system steps in and shows a secure dialog box, asking the user to confirm the subscription purchase. This usually includes signing in with their Apple ID and approving the payment.
@@ -90,7 +94,7 @@ sequenceDiagram
     end
 ```
 ##
-#### Restore purchase:
+### Restore Purchase
 1. **User Restore purchase**: Incase of syncing failed on backend user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
 2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier ```prefix_slug``` to identify the specific product to be restored.
