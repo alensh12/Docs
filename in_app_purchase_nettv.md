@@ -13,7 +13,7 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 
 ### Table of Content
 1. [IOS Setups]()
-2. [Flutter Packages for In-App Purchases on iOS]()
+2. [Flutter Packages for In-App Purchases on iOS](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#flutter-packages-for-in-app-purchases-on-ios)
 3. [Basic Flow]()
 4. [Restore Purchase]()
 5. [Refund Purchase Process]()
