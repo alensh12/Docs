@@ -15,12 +15,12 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 1. [IOS Setups](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#ios-setups)
 2. [Flutter Packages for In-App Purchases on iOS](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#flutter-packages-for-in-app-purchases-on-ios)
 3. [Basic Flow](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#basic-flow)
-4. [Restore Purchase](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#restore-purchase)
-5. [Refund Purchase Process](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#refund-purchase-process)
-6. [Payment Methods](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#payment-methods)
-7. [App Store Server Notifications](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#app-store-server-notifications)
-8. [API's Used](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apis-used)
-9. [Locally Saved Data for In-App Purchases](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#locally-saved-data-for-in-app-purchases)
+4. [Locally Saved Data for In-App Purchases](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#locally-saved-data-for-in-app-purchases)
+5. [Restore Purchase](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#restore-purchase)
+6. [Refund Purchase Process](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#refund-purchase-process)
+7. [Payment Methods](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#payment-methods)
+8. [App Store Server Notifications](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#app-store-server-notifications)
+9. [API's Used](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apis-used)
 10. [Setting Price of In-app Subscription](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#setting-price-of-in-app-subscription)
 11. [Apple's Small Business Program](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apples-small-business-program)
 
@@ -73,7 +73,7 @@ To support in-app purchases on iOS, the following Flutter packages are used:
     
 4.  **Server Validation**: App sends the transaction ID to server, which securely checks it with Apple’s App Store server to confirm the purchase is legit.
 
-5. **Final Result**: On success, If Apple’s server verifies the transaction, servers registers the purchase. App gets a “success” message, and gets access to content. On failure, If the validation fails (e.g. Due to an invalid transaction ID or some issue), server sends an error message back to the app.
+5. **Final Result**: On success, If Apple’s server verifies the transaction, server registers the purchase. App gets a “success” message, and gets access to content. On failure, If the validation fails (e.g. Due to an invalid transaction ID or some issue), server sends an error message back to the app.
 
 ```mermaid 
 sequenceDiagram
@@ -105,6 +105,21 @@ sequenceDiagram
         AppleSystem->>User: Shows error message
     end
 ```
+
+
+### Locally Saved Data for In-App Purchases
+The App stores the ```product_id```, a unique identifier for each product, in the app's preferences to manage in-app purchases.
+
+Below is the process for handling this data:
+
+- Storage Location:
+The ```product_id``` is saved in the app's preferences under the key ```in_app_purchase_product_ids``` as part of a product ID list.
+- Storage Condition:
+The ```product_id``` is only stored locally if the request to sync the purchase with the backend fails.
+- Data Removal:
+The specific ```product_id``` is removed from the ```in_app_purchase_product_ids``` list once the sync with the backend is successful.
+#
+
 ##
 ### Restore Purchase
 1. **User Restore purchase**: Incase of syncing failed on backend user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
@@ -221,22 +236,13 @@ RESTORE  - ```transaction_type : 'restored'```
 ```
 #
 
-### Locally Saved Data for In-App Purchases
-The App stores the ```product_id```, a unique identifier for each product, in the app's preferences to manage in-app purchases.
-
-Below is the process for handling this data:
-
-- Storage Location:
-The ```product_id``` is saved in the app's preferences under the key ```in_app_purchase_product_ids``` as part of a product ID list.
-- Storage Condition:
-The ```product_id``` is only stored locally if the request to sync the purchase with the backend fails.
-- Data Removal:
-The specific ```product_id``` is removed from the ```in_app_purchase_product_ids``` list once the sync with the backend is successful.
-#
-
-
 ### Setting Price of In-app Subscription
-To make a subscription available for purchase within the app, the subscription's pricing must be configured. If the pricing is not set, the corresponding subscription's product will not be available for purchase in the app. For more detail :- [Manage in-app purchases](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-a-price-for-an-in-app-purchase/)
+To make a subscription available for purchase within the app, the subscription's pricing must be configured. If the pricing is not set, the corresponding subscription's product will not be available for purchase in the app.
+
+We cannot set custom price for product. There are price tier available from which we have to select. For Nepal, lowest price we can currently set is USD 0.29. So we may not be able to set equivalent price for existing product prices. We can set base country while setting price. "Apple will provide comparable prices for all the other countries or regions based on tax or foreign exchange rates. You can edit prices for individual countries or regions. Apple may automatically adjust prices from time to time in every country or region except your base to account for changes in tax or foreign exchange rates. But Apple wont adjust prices for the countries or region for which you have edited its price."
+
+
+For more detail :- [Manage in-app purchases](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-a-price-for-an-in-app-purchase/)
 
 #
 
