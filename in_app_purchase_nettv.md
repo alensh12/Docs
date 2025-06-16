@@ -126,14 +126,10 @@ The specific ```product_id``` is removed from the ```in_app_purchase_product_ids
 1. **User Restore purchase**: Incase of syncing failed on backend when app is not deleted user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
 2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier ```prefix_slug``` to identify the specific product to be restored.
-   -  For eg. If the slug for that item is ```xyz-123``` app changes it to ```xyz_123```
-   -  ```mov``` is ```prefix```, depending upon the type of product ie. `mov` for Movie & `pkg` for Package
-   -  ```xyz_123``` is ```slug```
-   -  Resulting `mov_xyz_123`
+ 
+3. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
 
-4. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
-
-5. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
+4. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
 
 ```mermaid
 sequenceDiagram
