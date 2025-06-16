@@ -21,7 +21,7 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 7. [Payment Methods](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#payment-methods)
 8. [App Store Server Notifications](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#app-store-server-notifications)
 9. [API's Used](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apis-used)
-10. [Product ID and its Naming Convention]()
+10. [Product ID and its Naming Convention](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#product-id-and-its-naming-convention)
 11. [Setting Price of In-app Subscription](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#setting-price-of-in-app-subscription)
 12. [Apple's Small Business Program](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apples-small-business-program)
 
