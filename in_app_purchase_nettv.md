@@ -93,11 +93,15 @@ sequenceDiagram
 #### Restore purchase:
 1. **User Restore purchase**: Incase of syncing failed on backend user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
-2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier 'prefix_slug' to identify the specific product to be restored. 
+2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier ```prefix_slug``` to identify the specific product to be restored.
+   -  For eg. If the slug for that item is ```xyz-123``` app changes it to ```xyz_123```
+   -  ```mov``` is ```prefix```, depending upon the type of product ie. `mov` for Movie & `pkg` for Package
+   -  ```xyz_123``` is ```slug```
+   -  Resulting `mov_xyz_123`
 
-3. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
+4. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
 
-4. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
+5. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
 
 ```mermaid
 sequenceDiagram
@@ -149,7 +153,7 @@ App Store Server Notifications is a server-to-server service that notifies you i
 - [Server URLs for App Store Server Notifications](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/enter-server-urls-for-app-store-server-notifications)
 - [Responding to App Store Server Notifications](https://developer.apple.com/documentation/appstoreservernotifications/responding-to-app-store-server-notifications)
 
-We have used this mechanism to listen to the status of the user's in-app purchase and perform changes accordingly. For example, when a user refunds a purchase and we get the notification, we refund the user's subscription from our side.
+We have used this mechanism to listen to the status of the user's in-app purchase and perform changes accordingly. For example, when a user refunds a purchase and we get the notification, we cancel the user's subscription from our side.
 
 We can ask App Store Server Notifications to send a test notification to our server.  
 [https://developer.apple.com/documentation/appstoreserverapi/request\_a\_test\_notification](https://developer.apple.com/documentation/appstoreserverapi/request_a_test_notification)
@@ -184,7 +188,12 @@ PAYMENT VERIFY -
 
 > AUTHORIZATION HEADER: ```BEARER TOKEN```
 
-> PAYLOAD : 
+> PAYLOAD :
+
+BUY - ```transaction_type : 'purchased'```
+
+RESTORE  - ```transaction_type : 'restored'```
+
 ```dart 
 {
 	"transaction_id": $transactionId,
@@ -192,3 +201,29 @@ PAYMENT VERIFY -
 }
 ```
 #
+
+### Locally Saved Data for In-App Purchases
+The App stores the ```product_id```, a unique identifier for each product, in the app's preferences to manage in-app purchases.
+
+Below is the process for handling this data:
+
+- Storage Location:
+The ```product_id``` is saved in the app's preferences under the key ```in_app_purchase_product_ids``` as part of a product ID list.
+- Storage Condition:
+The ```product_id``` is only stored locally if the request to sync the purchase with the backend fails.
+- Data Removal:
+The specific ```product_id``` is removed from the ```in_app_purchase_product_ids``` list once the sync with the backend is successful.
+#
+
+
+### Setting Price of In-app Subscription
+To make a subscription available for purchase within the app, the subscription's pricing must be configured. If the pricing is not set, the corresponding subscription's product will not be available for purchase in the app. For more detail :- [Manage in-app purchases](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/set-a-price-for-an-in-app-purchase/)
+
+#
+
+### Apple's Small Business Program
+The [App Store Small Business Program](https://developer.apple.com/app-store/small-business-program/) offers a reduced commission rate of 15% on paid apps and In-App Purchases for developers who earned up to $1 million in proceeds the previous year. Developers must list all Associated Developer Accounts to determine eligibility, which is based on collective proceeds not exceeding $1 million. Enrollment requires being an Account Holder in the Apple Developer Program, accepting the latest Paid Apps agreement, and listing Associated Developer Accounts.
+
+#
+
+
