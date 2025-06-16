@@ -11,7 +11,7 @@ There are several types of in-app purchases (IAPs) that mobile app developers ca
 The specific types of IAPs that are appropriate for your app will depend on the app's content and business model. For NETTV, we have implemented a non-renewing type for in-app product subscription.
 ##
 
-### Table of Content
+### Table of Contents
 1. [IOS Setups](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#ios-setups)
 2. [Flutter Packages for In-App Purchases on iOS](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#flutter-packages-for-in-app-purchases-on-ios)
 3. [Basic Flow](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#basic-flow)
@@ -21,8 +21,9 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 7. [Payment Methods](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#payment-methods)
 8. [App Store Server Notifications](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#app-store-server-notifications)
 9. [API's Used](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apis-used)
-10. [Setting Price of In-app Subscription](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#setting-price-of-in-app-subscription)
-11. [Apple's Small Business Program](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apples-small-business-program)
+10. [Product ID and its Naming Convention]()
+11. [Setting Price of In-app Subscription](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#setting-price-of-in-app-subscription)
+12. [Apple's Small Business Program](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apples-small-business-program)
 
 
 #
@@ -35,7 +36,7 @@ We need to complete different setups before implementing in app purchase which c
 1. [Sign the Paid Applications Agreement and set up your banking and tax information in App Store Connect.](https://developer.apple.com/help/app-store-connect/provide-tax-information/tax-forms-overview)
 2. [Generate keys for in-app purchases.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases)
 3. [Generate a shared secret to verify receipts.](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-a-shared-secret-to-verify-receipts)
-To increase the security between our server and Apple’s servers when validating a subscription or in-app purchase, include a shared secret with your request to verify receipts.
+To increase the security between our server and Apple’s server when validating a subscription or in-app purchase, include a shared secret with your request to verify receipts.
 
 4. [Create a subscription in the app store connect.](https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/create-non-renewing-subscriptions/)
 5. [Enable in-app purchase in Xcode.](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app)
@@ -95,7 +96,7 @@ sequenceDiagram
         AppStoreServer->>Server: Confirms transaction validity
         
         alt Validation Success
-            Server->>App: Sends "success" message & Registers purchase
+            Server->>App: Registers purchase & Sends "success" message 
             App->>User: Grants access to content
         else Validation Failure
             Server->>App: Sends error message
@@ -122,7 +123,7 @@ The specific ```product_id``` is removed from the ```in_app_purchase_product_ids
 
 ##
 ### Restore Purchase
-1. **User Restore purchase**: Incase of syncing failed on backend user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
+1. **User Restore purchase**: Incase of syncing failed on backend when app is not deleted user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
 2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier ```prefix_slug``` to identify the specific product to be restored.
    -  For eg. If the slug for that item is ```xyz-123``` app changes it to ```xyz_123```
@@ -234,6 +235,23 @@ RESTORE  - ```transaction_type : 'restored'```
 	"transaction_type":$transactionType
 }
 ```
+#
+
+### Product ID and its Naming Convention 
+The `product_id` is a unique identifier for each product, used consistently in the app and App Store Connect, and follows a specific naming convention:
+
+> Each product has a distinct `product_id` defined in App Store Connect during creation, which the app uses to identify and retrieve product details.
+
+
+**Naming Convention**
+- Slug Transformation: The product slug `(e.g., xyz-123)` is modified by replacing the hyphen with an underscore `(e.g., xyz_123)`.
+- Prefix Assignment: A prefix is added based on product type:
+>`mov` for Movie products.
+
+>`pkg` for Package products.
+- Final Product ID Format: The `product_id` is formed by combining the prefix and transformed slug (e.g., `mov_xyz_123` for a Movie with slug `xyz_123`).
+- Transaction History Filtering: The app filters the user’s transaction history using the `product_id` to retrieve specific product details from the transaction list.
+
 #
 
 ### Setting Price of In-app Subscription
