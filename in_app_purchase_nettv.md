@@ -121,7 +121,6 @@ The ```product_id``` is only stored locally if the request to sync the purchase 
 The specific ```product_id``` is removed from the ```in_app_purchase_product_ids``` list once the sync with the backend is successful.
 #
 
-##
 ### Restore Purchase
 1. **User Restore purchase**: Incase of syncing failed on backend when app is not deleted user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
@@ -263,6 +262,8 @@ For more detail :- [Manage in-app purchases](https://developer.apple.com/help/ap
 ### Apple's Small Business Program
 The [App Store Small Business Program](https://developer.apple.com/app-store/small-business-program/) offers a reduced commission rate of 15% on paid apps and In-App Purchases for developers who earned up to $1 million in proceeds the previous year. Developers must list all Associated Developer Accounts to determine eligibility, which is based on collective proceeds not exceeding $1 million. Enrollment requires being an Account Holder in the Apple Developer Program, accepting the latest Paid Apps agreement, and listing Associated Developer Accounts.
 
-#
+
+
+##
 
 
