@@ -21,7 +21,7 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 7. [Payment Methods](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#payment-methods)
 8. [App Store Server Notifications](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#app-store-server-notifications)
 9. [API's Used](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apis-used)
-10. [Product ID and its Naming Convention](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#product-id-and-its-naming-convention)
+10. [Product ID and its Naming Convention]()
 11. [Setting Price of In-app Subscription](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#setting-price-of-in-app-subscription)
 12. [Apple's Small Business Program](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apples-small-business-program)
 
@@ -121,14 +121,19 @@ The ```product_id``` is only stored locally if the request to sync the purchase 
 The specific ```product_id``` is removed from the ```in_app_purchase_product_ids``` list once the sync with the backend is successful.
 #
 
+##
 ### Restore Purchase
-1. **User Restore purchase**: Incase of syncing failed on backend when app is not deleted user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
+1. **User Restore purchase**: Incase of syncing failed on backend, User can intiate restore purchase which he/she has already bought in other devices or want to restore in same device.
 
 2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier ```prefix_slug``` to identify the specific product to be restored.
- 
-3. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
+   -  For eg. If the slug for that item is ```xyz-123``` app changes it to ```xyz_123```
+   -  ```mov``` is ```prefix```, depending upon the type of product ie. `mov` for Movie & `pkg` for Package
+   -  ```xyz_123``` is ```slug```
+   -  Resulting `mov_xyz_123`
 
-4. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
+4. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
+
+5. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
 
 ```mermaid
 sequenceDiagram
@@ -245,7 +250,6 @@ The `product_id` is a unique identifier for each product, used consistently in t
 
 >`pkg` for Package products.
 - Final Product ID Format: The `product_id` is formed by combining the prefix and transformed slug (e.g., `mov_xyz_123` for a Movie with slug `xyz_123`).
-- Transaction History Filtering: The app filters the user’s transaction history using the `product_id` to retrieve specific product details from the transaction list.
 
 #
 
@@ -262,8 +266,6 @@ For more detail :- [Manage in-app purchases](https://developer.apple.com/help/ap
 ### Apple's Small Business Program
 The [App Store Small Business Program](https://developer.apple.com/app-store/small-business-program/) offers a reduced commission rate of 15% on paid apps and In-App Purchases for developers who earned up to $1 million in proceeds the previous year. Developers must list all Associated Developer Accounts to determine eligibility, which is based on collective proceeds not exceeding $1 million. Enrollment requires being an Account Holder in the Apple Developer Program, accepting the latest Paid Apps agreement, and listing Associated Developer Accounts.
 
-
-
-##
+#
 
 
