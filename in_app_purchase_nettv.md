@@ -21,7 +21,7 @@ The specific types of IAPs that are appropriate for your app will depend on the 
     
 4.  **Server Validation**: App sends the transaction ID to server, which securely checks it with Apple’s App Store server to confirm the purchase is legit.
 
-5. **Final Result**: On, Success If Apple’s server verifies the transaction, servers registers the purchase. App gets a “success” message, and gets access to content. On, Failure: If the validation fails (e.g., due to an invalid transaction ID or some issue), server sends an error message back to the app.
+5. **Final Result**: On success, If Apple’s server verifies the transaction, servers registers the purchase. App gets a “success” message, and gets access to content. On failure, If the validation fails (e.g. Due to an invalid transaction ID or some issue), server sends an error message back to the app.
 
 ```mermaid 
 sequenceDiagram
