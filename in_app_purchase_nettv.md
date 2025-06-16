@@ -12,17 +12,17 @@ The specific types of IAPs that are appropriate for your app will depend on the 
 ##
 
 ### Table of Content
-1. [IOS Setups]()
+1. [IOS Setups](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#ios-setups)
 2. [Flutter Packages for In-App Purchases on iOS](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#flutter-packages-for-in-app-purchases-on-ios)
-3. [Basic Flow]()
-4. [Restore Purchase]()
-5. [Refund Purchase Process]()
-6. [Payment Methods]()
-7. [App Store Server Notifications]()
-8. [API's Used]()
-9. [Locally Saved Data for In-App Purchases]()
-10. [Setting Price of In-app Subscription]()
-11. [Apple's Small Business Program]()
+3. [Basic Flow](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#basic-flow)
+4. [Restore Purchase](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#restore-purchase)
+5. [Refund Purchase Process](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#refund-purchase-process)
+6. [Payment Methods](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#payment-methods)
+7. [App Store Server Notifications](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#app-store-server-notifications)
+8. [API's Used](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apis-used)
+9. [Locally Saved Data for In-App Purchases](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#locally-saved-data-for-in-app-purchases)
+10. [Setting Price of In-app Subscription](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#setting-price-of-in-app-subscription)
+11. [Apple's Small Business Program](https://github.com/alensh12/Docs/blob/master/in_app_purchase_nettv.md#apples-small-business-program)
 
 
 #
