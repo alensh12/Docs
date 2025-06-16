@@ -55,20 +55,25 @@ sequenceDiagram
 ```
 ##
 #### Restore purchase:
-1. **User Restore purchase**: User intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
+1. **User Restore purchase**: Incase of syncing failed on backend user can intiate restore purchase which he/she has already bought in other devices or want to restore in same device due to app deletion.
 
-2. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
+2. **Communicate Apple Server**: App sends a request to the Apple Server to fetch the transaction history associated with the logged-in Apple ID. The Apple Server processes the request and responds with the complete transaction history for the Apple ID. The App receives the transaction history and filters it using the unique identifier 'prefix_slug' to identify the specific product to be restored. 
 
-3. **Final result**: On, Success, App gets "success message" and gets access to content. On Failure: server sends an error message back to app
+3. **Restore Outcome**: App send "transaction id" and "transaction type" to validate to server.
+
+4. **Final result**: On success, App gets "success message" and gets access to content. On failure, server sends an error message back to app.
 
 ```mermaid
 sequenceDiagram
     participant User
     participant App
+    participant Apple Server
     participant Server
 
     User->>App: Initiates restore purchase
-    App->>Server: Sends transaction ID and type
+    App->>Apple Server: Request for transaction history(Associated apple id)
+    Apple Server->>App: Receives the transaction history.
+    App->>Server: Filters the specific product(using 'prefix_slug') & Sends transaction ID and type
     Server-->>App: Validates transaction
     alt Success
         Server-->>App: Returns success message
