@@ -85,10 +85,9 @@ sequenceDiagram
 ```
 ##
 ### Refund Purchase Process
+For developers, a specific code implementation is available to test refund functionality.
 
-Refunds for in-app purchases cannot be initiated within the app. Users must request a refund externally through Apple's refund process, as detailed in [Apple's Refund Support](https://support.apple.com/en-us/118223). For developers, a specific code implementation is available to test refund functionality.
-
-#### Developer Testing (Refund Implementation)
+> Developer Testing (Refund Implementation)
 To simulate and verify refund behavior during testing, developers can use the following code:
 
 ```dart
