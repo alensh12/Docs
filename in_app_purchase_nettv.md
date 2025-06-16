@@ -43,8 +43,7 @@ sequenceDiagram
         AppStoreServer->>Server: Confirms transaction validity
         
         alt Validation Success
-            Server->>App: Sends "success" message
-            Server->>App: Registers purchase
+            Server->>App: Sends "success" message & Registers purchase
             App->>User: Grants access to content
         else Validation Failure
             Server->>App: Sends error message
